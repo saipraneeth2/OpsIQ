@@ -1,0 +1,49 @@
+# --- Secrets (MUST NEVER COMMIT) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials.json
+service-account*.json
+
+# --- Data & footage (never commit customer data) ---
+data/
+footage/
+*.mp4
+*.mkv
+*.avi
+*.mov
+*.csv
+!docs/**/*.csv
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+htmlcov/
+.coverage
+dist/
+build/
+
+# --- Node (for future dashboard) ---
+node_modules/
+.next/
+.turbo/
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# --- Model weights (large) ---
+*.pt
+*.onnx
+weights/
