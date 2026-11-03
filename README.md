@@ -1,8 +1,8 @@
 # OpsIq
 
-**A multi-store operations platform for franchise and multi-location owners.**
+**Pre-alpha. Planning documents and code scaffolding only.**
 
-OpsIq gives owners of multi-location businesses a single, trustworthy daily view of what's actually happening in each of their stores — verified sales, staff performance, and customer-flow insights — without depending on a General Manager to filter and report the truth.
+OpsIq is an operations platform in development for multi-store owners, designed to reconcile POS sales against end-of-day cash, flag unbilled sales and cash discrepancies, and send the owner a nightly KPI summary.
 
 ---
 
@@ -14,20 +14,25 @@ Multi-location owners (franchise operators, retail chains, salon groups, restaur
 2. **Problems surface late.** A sales dip that starts on a Monday is only noticed at the end-of-month review, three weeks after the customer behavior changed.
 3. **The weakest performer stays invisible.** Owners intuit who their strong and weak staff are, but rarely have per-person data to act on it.
 
-## The product
+## Core design (first version)
 
-OpsIq is a lightweight software layer that sits on top of the store's **existing** CCTV cameras and POS system. It:
+- Pull sales data from the store's existing POS.
+- Reconcile POS sales against the end-of-day cash count.
+- Flag unbilled sales and cash discrepancies.
+- Send the owner a nightly KPI summary.
 
-- Counts customer walk-ins from CCTV using computer vision.
-- Pulls sales data from the POS.
-- Cross-checks the two, plus the end-of-day cash count, to surface unbilled visits and cash discrepancies.
-- Ranks staff by conversion, engagement time, and revenue per shift.
-- Sends the owner a daily 9pm WhatsApp/Telegram summary — no dashboard to open, no manager to ask.
-- (Later) Uses AI to summarize weekly trends and suggest concrete actions.
+## Planned later
+
+These ideas are on the roadmap, not built:
+
+- Count customer walk-ins from existing CCTV cameras with computer vision, and cross-check them against POS sales.
+- Per-staff performance views (conversion and revenue per shift).
+- Deliver the nightly summary through WhatsApp or Telegram.
+- AI-written weekly trend summaries with suggested actions.
 
 ## Who it's for
 
-- Franchise owners running 3–20 locations.
+- Franchise owners running 3 to 20 locations.
 - Multi-store retail (opticals, mobile stores, salons, QSR, kirana, pharmacies).
 - Single-store owners who work remotely from their business.
 
@@ -35,7 +40,7 @@ OpsIq is a lightweight software layer that sits on top of the store's **existing
 
 ```
 opsiq/
-├── docs/                  # The plan — read these first
+├── docs/                  # The plan: read these first
 │   ├── 00-vision.md
 │   ├── 01-mvp-spec.md
 │   ├── 02-roadmap-90-days.md
@@ -43,28 +48,24 @@ opsiq/
 │   ├── 04-architecture.md
 │   ├── 05-pilot-stores.md
 │   └── 06-week-1-checklist.md
-├── backend/               # FastAPI service — API, database, scheduled jobs
-├── vision/                # YOLO-based walk-in counting and staff activity detection
-├── bot/                   # Telegram/WhatsApp bot that delivers the daily report
+├── backend/               # FastAPI service scaffold: API, database, scheduled jobs
+├── vision/                # Walk-in counting scaffold (planned later)
+├── bot/                   # Messaging bot scaffold for the nightly summary
 ├── scripts/               # One-off scripts, POS pullers, orchestration
-├── .env.example           # Environment variables template (NEVER commit real .env)
+├── .env.example           # Environment variables template (never commit a real .env)
 └── .gitignore
 ```
 
 ## Start here
 
-1. Read [`docs/00-vision.md`](docs/00-vision.md) — the product thesis.
-2. Read [`docs/02-roadmap-90-days.md`](docs/02-roadmap-90-days.md) — the actual build plan.
-3. Read [`docs/06-week-1-checklist.md`](docs/06-week-1-checklist.md) — what to do this week.
-
-## Status
-
-Pre-alpha. No code yet. Pilot planned across 3 stores in Andhra Pradesh, India (one salon, two optical retail franchises) beginning June 2026.
+1. Read [`docs/00-vision.md`](docs/00-vision.md) for the product thesis.
+2. Read [`docs/02-roadmap-90-days.md`](docs/02-roadmap-90-days.md) for the build plan.
+3. Read [`docs/06-week-1-checklist.md`](docs/06-week-1-checklist.md) for the first steps.
 
 ## Tech stack (planned)
 
-Python 3.11 · FastAPI · PostgreSQL · Ultralytics YOLOv8 · Telegram Bot API · Anthropic Claude API · Deployed on Railway/Hetzner.
+Python 3.11 · FastAPI · PostgreSQL · Telegram Bot API · Anthropic Claude API. Computer vision (Ultralytics YOLOv8) comes later.
 
 ## License
 
-Proprietary — all rights reserved. See [LICENSE](LICENSE).
+Proprietary, all rights reserved. See [LICENSE](LICENSE).
